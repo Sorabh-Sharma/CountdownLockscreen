@@ -1,26 +1,358 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f0f4ec;
+  --foreground: #243021;
+  --sage-primary: #688a3c;
+  --sage-light: #eef5e6;
+  --honey-yellow: #e8a023;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: var(--font-display), "Nunito", "Plus Jakarta Sans", sans-serif;
+  --color-sage: #688a3c;
+  --color-sage-dark: #4d6829;
+  --color-honey: #e8a023;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f4ec;
+  color: #243021;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cozy Card & Claymorphism style */
+.cozy-card {
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 12px 36px -6px rgba(78, 102, 70, 0.09), 0 2px 8px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(195, 214, 184, 0.35);
+}
+
+.cozy-card-interactive {
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+}
+.cozy-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -6px rgba(78, 102, 70, 0.14), 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Wavy sheet divider */
+.wavy-divider {
+  width: 100%;
+  height: 24px;
+}
+
+/* Force hide all scrollbars across all elements & browsers */
+html,
+body,
+div,
+section,
+main,
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar,
+::-webkit-scrollbar,
+*::-webkit-scrollbar-track,
+::-webkit-scrollbar-track,
+*::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.no-scrollbar *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Focus styles */
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: 2px solid #688a3c;
+  outline-offset: 1px;
+}
+
+/* Ticket dashed perforation */
+.ticket-perforation {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.75) 0px,
+    rgba(255, 255, 255, 0.75) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Pop animation for completed checkbox */
+@keyframes cutePop {
+  0% { transform: scale(0.7); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.cute-pop {
+  animation: cutePop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Vintage Ticket Stamp slam animation */
+@keyframes stampSlam {
+  0% {
+    transform: rotate(-14deg) scale(2.2);
+    opacity: 0;
+  }
+  65% {
+    transform: rotate(-7deg) scale(0.92);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-8deg) scale(1);
+    opacity: 1;
+  }
+}
+.ticket-stamp {
+  animation: stampSlam 0.26s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+}
+
+/* Hole punch click animation */
+@keyframes punchPop {
+  0% { transform: scale(0.3); opacity: 0; }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.punch-pop {
+  animation: punchPop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ── Autumn Deciduous Trees Wind Gust Animations ── */
+@keyframes windGust1 {
+  0%, 42% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  48% {
+    transform: rotate(2.2deg) skewX(-1.2deg);
+  }
+  56% {
+    transform: rotate(6.5deg) skewX(-3deg);
+  }
+  64% {
+    transform: rotate(2.8deg) skewX(-1.5deg);
+  }
+  72% {
+    transform: rotate(5.2deg) skewX(-2.5deg);
+  }
+  80% {
+    transform: rotate(1.4deg) skewX(-0.7deg);
+  }
+  87% {
+    transform: rotate(-0.6deg) skewX(0.3deg);
+  }
+  94%, 100% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+}
+
+@keyframes windGust2 {
+  0%, 40% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  47% {
+    transform: rotate(1.8deg) skewX(-1deg);
+  }
+  55% {
+    transform: rotate(5.8deg) skewX(-2.6deg);
+  }
+  63% {
+    transform: rotate(2.2deg) skewX(-1.2deg);
+  }
+  71% {
+    transform: rotate(4.8deg) skewX(-2.2deg);
+  }
+  79% {
+    transform: rotate(1deg) skewX(-0.5deg);
+  }
+  86% {
+    transform: rotate(-0.5deg) skewX(0.25deg);
+  }
+  93%, 100% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+}
+
+@keyframes windGust3 {
+  0%, 44% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  51% {
+    transform: rotate(2.6deg) skewX(-1.5deg);
+  }
+  59% {
+    transform: rotate(7.5deg) skewX(-3.6deg);
+  }
+  67% {
+    transform: rotate(3.2deg) skewX(-1.8deg);
+  }
+  75% {
+    transform: rotate(6deg) skewX(-2.8deg);
+  }
+  83% {
+    transform: rotate(1.6deg) skewX(-0.8deg);
+  }
+  90% {
+    transform: rotate(-0.8deg) skewX(0.4deg);
+  }
+  96%, 100% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+}
+
+.tree-sway-1 {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: windGust1 6.2s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+.tree-sway-2 {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: windGust2 7s cubic-bezier(0.42, 0, 0.58, 1) infinite 0.8s;
+}
+
+.tree-sway-3 {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: windGust3 5.8s cubic-bezier(0.42, 0, 0.58, 1) infinite 1.7s;
+}
+
+/* ── Autumn Leaves Blowing Full Width Across the Phone (From Left to Other End) ── */
+@keyframes autumnAcrossScreen1 {
+  0%, 25% {
+    transform: translate(-30px, 0px) rotate(0deg) scale(0.9);
+    opacity: 0;
+  }
+  32% {
+    opacity: 0.95;
+    transform: translate(25px, 10px) rotate(75deg) scale(1);
+  }
+  48% {
+    opacity: 1;
+    transform: translate(120px, -6px) rotate(210deg) scale(1.05);
+  }
+  64% {
+    opacity: 0.95;
+    transform: translate(220px, 20px) rotate(380deg) scale(1);
+  }
+  78% {
+    opacity: 0.9;
+    transform: translate(300px, 8px) rotate(520deg) scale(0.95);
+  }
+  88% {
+    opacity: 0.85;
+    transform: translate(355px, 30px) rotate(640deg) scale(0.9);
+  }
+  94% {
+    opacity: 0.3;
+    transform: translate(380px, 42px) rotate(700deg) scale(0.85);
+  }
+  97%, 100% {
+    opacity: 0;
+    transform: translate(395px, 48px) rotate(720deg) scale(0.8);
+  }
+}
+
+@keyframes autumnAcrossScreen2 {
+  0%, 28% {
+    transform: translate(-30px, 0px) rotate(0deg) scale(0.85);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.95;
+    transform: translate(30px, -12px) rotate(90deg) scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(135px, 16px) rotate(250deg) scale(1);
+  }
+  66% {
+    opacity: 0.95;
+    transform: translate(235px, -6px) rotate(400deg) scale(0.95);
+  }
+  80% {
+    opacity: 0.9;
+    transform: translate(315px, 18px) rotate(560deg) scale(0.9);
+  }
+  90% {
+    opacity: 0.8;
+    transform: translate(360px, 12px) rotate(670deg) scale(0.85);
+  }
+  95% {
+    opacity: 0.2;
+    transform: translate(385px, 18px) rotate(720deg) scale(0.8);
+  }
+  98%, 100% {
+    opacity: 0;
+    transform: translate(395px, 22px) rotate(740deg) scale(0.75);
+  }
+}
+
+@keyframes autumnAcrossScreen3 {
+  0%, 32% {
+    transform: translate(-30px, 0px) rotate(0deg) scale(0.9);
+    opacity: 0;
+  }
+  38% {
+    opacity: 0.95;
+    transform: translate(20px, 14px) rotate(80deg) scale(1);
+  }
+  54% {
+    opacity: 1;
+    transform: translate(125px, 32px) rotate(230deg) scale(1.05);
+  }
+  70% {
+    opacity: 0.95;
+    transform: translate(225px, 12px) rotate(390deg) scale(1);
+  }
+  84% {
+    opacity: 0.9;
+    transform: translate(310px, 35px) rotate(540deg) scale(0.95);
+  }
+  92% {
+    opacity: 0.75;
+    transform: translate(360px, 48px) rotate(650deg) scale(0.9);
+  }
+  96% {
+    opacity: 0.2;
+    transform: translate(385px, 58px) rotate(700deg) scale(0.85);
+  }
+  98%, 100% {
+    opacity: 0;
+    transform: translate(395px, 64px) rotate(720deg) scale(0.8);
+  }
+}
+
+.leaf-across-1 {
+  animation: autumnAcrossScreen1 6.5s cubic-bezier(0.35, 0.1, 0.25, 1) infinite;
+}
+
+.leaf-across-2 {
+  animation: autumnAcrossScreen2 7.2s cubic-bezier(0.35, 0.1, 0.25, 1) infinite 0.7s;
+}
+
+.leaf-across-3 {
+  animation: autumnAcrossScreen3 6s cubic-bezier(0.35, 0.1, 0.25, 1) infinite 1.5s;
 }
